@@ -83,14 +83,14 @@ do
         else
                 mv $FINAL_BACKUP_DIR"$DATABASE".sql.gz.in_progress $FINAL_BACKUP_DIR"$DATABASE".sql.gz
                 s3cmd put \
-                  --content-disposition="attachment; filename=$DATABASE-$BACKUP_TIMESTAMP.sql.gz" \
                   --no-progress \
                   --server-side-encryption \
                   --acl-private \
                   --no-preserve \
                   -c $BACKUP_CONFIG_DIR/s3cmd.cfg \
                   $FINAL_BACKUP_DIR"$DATABASE".sql.gz \
-                  s3://$BACKUP_BUCKET/$DATABASE/$BACKUP_TIMESTAMP/$HOSTNAME.sql.gz
+                  s3://$BACKUP_BUCKET/$BACKUP_PREFIX/$DATABASE/$BACKUP_TIMESTAMP/$HOSTNAME.sql.gz \
+                  --content-disposition="attachment; filename=$DATABASE-$BACKUP_TIMESTAMP.sql.gz"
         fi
 done
 
