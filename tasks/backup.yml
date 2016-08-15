@@ -33,4 +33,4 @@
     job: "/bin/bash {{ backup_bin_dir }}/pg_backup -c {{ backup_config_dir }}/config"
     special_time: hourly
     user: postgres
-    state: present
+    state: "{{ 'present' if backup_enabled else 'absent' }}"
