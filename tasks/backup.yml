@@ -27,3 +27,10 @@
     owner: root
     mode: "0755"
 
+- name: 'Backup - Setup cron'
+  cron:
+    name: 'PG Backup timed task'
+    job: "/bin/bash {{ backup_bin_dir }}/pg_backup -c {{ backup_config_dir }}/config"
+    special_time: hourly
+    user: postgres
+    state: present
