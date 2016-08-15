@@ -8,6 +8,6 @@
 - name: Adds S3 credentials
   template: >
     src=../templates/s3cmd.j2
-    dest=~{{ backup_user }}/.s3cfg
+    dest="{{ backup_config_dir }}/s3cfg"
     owner={{ backup_user }}
     mode=600
