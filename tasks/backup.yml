@@ -1,0 +1,29 @@
+---
+- name: 'Backup - Create backup directory'
+  file:
+    path: "{{ backup_config_dir }}"
+    state: directory
+    owner: "{{ backup_user }}"
+    mode: "0700"
+
+- name: 'Backup - Write config file'
+  template:
+    src: "../templates/config.j2"
+    dest: "{{ backup_config_dir }}/config"
+    owner: "{{ backup_user }}"
+    mode: "0600"
+
+- name: 'Backup - Create script directory'
+  file:
+    path: "{{ backup_bin_dir }}"
+    state: directory
+    owner: root
+    mode: "0755"
+
+- name: 'Backup - Write script file'
+  copy:
+    src: "../files/script"
+    dest: "{{ backup_bin_dir }}/pg_backup"
+    owner: root
+    mode: "0755"
+

@@ -1,0 +1,15 @@
+# Installs S3CMD and sets up the config file for the backup user
+- name: Backup - S3CMD installation
+  apt:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - python-magic
+    - s3cmd
+
+- name: Adds S3 credentials
+  template: >
+    src=../templates/s3cmd.j2
+    dest=~{{ backup_user }}/.s3cfg
+    owner={{ backup_user }}
+    mode=600
