@@ -4,19 +4,9 @@
 ## DO NOT EDIT.             ##
 ##############################
 
-# Optional system user to run backups as.  If the user the script is running as doesn't match this
-# the script terminates.  Leave blank to skip check.
+BACKUP_BUCKET={{ backup_bucket }}
 BACKUP_USER={{ backup_user }}
 BACKUP_PREFIX={{ backup_prefix }}
 BACKUP_CONFIG_DIR={{ backup_config_dir }}
-
-# Optional hostname to adhere to pg_hba policies.  Will default to "localhost" if none specified.
-HOSTNAME={{ backup_hostname }}
-
-# Optional username to connect to database as.  Will default to "postgres" if none specified.
-USERNAME={{ backup_pg_user }}
-
-# This dir will be created if it doesn't exist.  This must be writable by the user the script is
-# running as.
 BACKUP_DIR={{ backup_tmp_dir }}
 

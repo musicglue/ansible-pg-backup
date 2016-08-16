@@ -1,7 +1,8 @@
 ---
 
-- fail: msg="You must define backup_user, backup_access_key and backup_secret_key"
+- fail: msg="You must define backup_user, backup_bucket, backup_access_key and backup_secret_key"
   when: backup_access_key is not defined or
+    backup_bucket is not defined or
     backup_secret_key is not defined or
     backup_user is not defined
 

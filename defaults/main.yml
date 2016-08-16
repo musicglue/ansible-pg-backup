@@ -1,7 +1,6 @@
 ---
 backup_bin_dir: /usr/local/bin
 backup_config_dir: /etc/pg_backup
-backup_hostname: localhost
 backup_pg_user: "{{ backup_user }}"
 backup_prefix: backups
 backup_user: postgres
