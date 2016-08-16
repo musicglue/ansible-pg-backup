@@ -48,7 +48,7 @@ fi;
 
 IN_RECOVERY="$(psql -qAtc 'SELECT pg_is_in_recovery()')"
 
-if [[ "$IN_RECOVERY" != "$BACKUP_ACCEPTABLE_RECOVERY_STATE" ]]; then
+if [ "$IN_RECOVERY" != "$BACKUP_ACCEPTABLE_RECOVERY_STATE" ]; then
   echo 'This server is not marked for backup, exiting'
   exit 0;
 fi
