@@ -31,6 +31,6 @@
   cron:
     name: 'PG Backup timed task'
     job: "/bin/bash {{ backup_bin_dir }}/pg_backup -c {{ backup_config_dir }}/config"
-    special_time: hourly
+    special_time: "{{ backup_time_period }}"
     user: postgres
     state: "{{ 'present' if backup_enabled else 'absent' }}"

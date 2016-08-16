@@ -1,8 +1,10 @@
 ---
+backup_acceptable_recovery_state: "f"
 backup_bin_dir: /usr/local/bin
 backup_config_dir: /etc/pg_backup
 backup_pg_user: "{{ backup_user }}"
 backup_prefix: backups
 backup_user: postgres
+backup_time_period: hourly
 backup_tmp_dir: /tmp/pg_backup
 

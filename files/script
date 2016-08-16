@@ -46,6 +46,13 @@ if [ ! $HOSTNAME ]; then
         HOSTNAME="$(hostname)"
 fi;
 
+IN_RECOVERY="$(psql -qAtc 'SELECT pg_is_in_recovery()')"
+
+if [[ "$IN_RECOVERY" != "$BACKUP_ACCEPTABLE_RECOVERY_STATE" ]]; then
+  echo 'This server is not marked for backup, exiting'
+  exit 0;
+fi
+
 ###########################
 #### START THE BACKUPS ####
 ###########################
@@ -84,7 +91,7 @@ do
                   --no-preserve \
                   -c $BACKUP_CONFIG_DIR/s3cfg \
                   $FINAL_BACKUP_DIR"$DATABASE".sql.gz \
-                  s3://$BACKUP_BUCKET/$BACKUP_PREFIX/$DATABASE/$BACKUP_TIMESTAMP/$HOSTNAME.sql.gz \
+                  s3://$BACKUP_BUCKET/$BACKUP_PREFIX/$DATABASE/$BACKUP_TIMESTAMP/$HOSTNAME-$SERVER_MODE.sql.gz \
                   --content-disposition="attachment; filename=$DATABASE-$BACKUP_TIMESTAMP.sql.gz"
         fi
 done
