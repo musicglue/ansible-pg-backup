@@ -46,11 +46,6 @@ if [ ! $HOSTNAME ]; then
         HOSTNAME="$(hostname)"
 fi;
 
-if [ ! $USERNAME ]; then
-	USERNAME="postgres"
-fi;
-
-
 ###########################
 #### START THE BACKUPS ####
 ###########################
