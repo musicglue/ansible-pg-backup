@@ -6,5 +6,6 @@
     backup_secret_key is not defined or
     backup_user is not defined
 
-- include: s3cmd.yml
 - include: backup.yml
+- include: s3cmd.yml
+
