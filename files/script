@@ -57,7 +57,7 @@ fi
 #### START THE BACKUPS ####
 ###########################
 
-BACKUP_TIMESTAMP="$(date +\%Y-\%m-\%d)"
+BACKUP_TIMESTAMP="$(date +\%Y-\%m-\%d-\%H-\%M)"
 FINAL_BACKUP_DIR=$BACKUP_DIR"$BACKUP_TIMESTAMP/"
 
 echo "Making backup directory in $FINAL_BACKUP_DIR"
@@ -95,5 +95,7 @@ do
                   --content-disposition="attachment; filename=$DATABASE-$BACKUP_TIMESTAMP.sql.gz"
         fi
 done
+
+rm -rf $FINAL_BACKUP_DIR
 
 echo -e "\nAll database backups complete!"
